@@ -137,7 +137,7 @@ $( document ).ready(function() {
         url: '../../logica/getAsignaturaInfo.php',
         type: 'POST',
         async: true,
-        data: 'asignatura='+datos_envio[1]+'&malla='+datos_envio[0],
+        data: 'asignatura='+datos_envio[1]+'&malla='+datos_envio[0]+"&nombre_obj="+datos_envio[2],
         success: function(datos_recibidos) {
                 $("#profesor_asignatura").prop("disabled",false);
                 $("#foto_asignatura").prop("disabled",false);

@@ -9,9 +9,10 @@ if(!isset($_POST['malla'])){
 	$rs = $consulta->consultar("SELECT nombre,descrip,profesor,foto FROM asignatura WHERE numero='$asignatura'");
 }else{
 	$malla = $_POST['malla'];
-	$codigo = $_POST['malla'].$_POST['asignatura']
-;	$rs = $consulta->consultar("SELECT nombre,descrip,profesor,foto FROM asignatura WHERE numero='$asignatura' AND malla_idMalla='$malla'");
-	$rs2 = $consulta->consultar("SELECT idobjetivo,descrip,estado FROM objetivo WHERE asignatura_id='$codigo'");
+	$codigo = $_POST['malla'].$_POST['asignatura'];
+	$nombre_obj = str_replace("-", " ", $_POST['nombre_obj']);	
+	$rs = $consulta->consultar("SELECT nombre,descrip,profesor,foto FROM asignatura WHERE numero='$asignatura' AND malla_idMalla='$malla'");
+	$rs2 = $consulta->consultar("SELECT idobjetivo,descrip,estado FROM objetivo WHERE nombre_asig='$nombre_obj'");
 }
 
 $objetivos = "";

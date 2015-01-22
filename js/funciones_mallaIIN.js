@@ -39,51 +39,51 @@ $( document ).ready(function() {
 						}
 	    			}
 	    			
-					
+					var name_malla = asig[1].replace(/\s/g,"-");
 
 	    			if(number_year == control_year){
 	    				if(number == control_sem){
 		    				if(control_posicion == 0){
 		    					if(!control_primer_sem){
-		    						$(".filaramos_1").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_1").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}else{
-		    						$(".filaramos_1").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_1").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}
 		    					$(".filaramos_6").append("<td></td><td></td><td></td>");
 			    			}
 			    			if(control_posicion == 1){
 			    				if(!control_primer_sem){
-		    						$(".filaramos_2").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_2").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}else{
-		    						$(".filaramos_2").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_2").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}
 			    			}
 			    			if(control_posicion == 2){
 			    				if(!control_primer_sem){
-		    						$(".filaramos_3").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_3").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}else{
-		    						$(".filaramos_3").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_3").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}
 			    			}
 			    			if(control_posicion == 3){
 			    				if(!control_primer_sem){
-		    						$(".filaramos_4").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_4").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}else{
-		    						$(".filaramos_4").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_4").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}
 			    			}
 			    			if(control_posicion == 4){
 			    				if(!control_primer_sem){
-		    						$(".filaramos_5").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_5").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}else{
-		    						$(".filaramos_5").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_5").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}
 			    			}
 			    			if(control_posicion == 5){
 			    				if(!control_primer_sem){
-		    						$(".filaramos_6").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_6").append("<td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||++'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}else{
-		    						$(".filaramos_6").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    						$(".filaramos_6").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    					}
 			    			}	
 			    			control_posicion++;
@@ -93,7 +93,7 @@ $( document ).ready(function() {
 		    				control_posicion = 1;
 		    				control_sem++;
 		    				conteo_sem++;
-		    				$(".filaramos_1").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+		    				$(".filaramos_1").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 		    				control_requisitos++;
 		    			}
 	    			}else{
@@ -101,7 +101,7 @@ $( document ).ready(function() {
 	    				conteo_sem++;
 	    				control_sem = control_sem + 9;
 	    				control_posicion = 1;
-	    				$(".filaramos_1").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"'>Ver Informacion</a></td>");
+	    				$(".filaramos_1").append("<td class='requisito_celda'>R:\n"+result_req+"</td><td><div class='caja_celda caja_no_pintada year_"+control_year+" sem_"+conteo_sem+"' id='celdaSem"+conteo_sem+"_"+asig[0]+"||"+requisitos_grande[control_requisitos]+"'>"+asig[0]+"<br>"+asig[1]+"</div><a class='btn btn-xs btn-primary boton_ver_info_asignatura' id='"+tmp1+"_"+tmp2+"_"+name_malla+"'>Ver Informacion</a></td>");
 	    				control_requisitos++;
 	    			}	
 	    		}
@@ -154,7 +154,7 @@ $( document ).ready(function() {
 					    url: '../logica/getAsignaturaInfoMalla.php',
 					    type: 'POST',
 					    async: true,
-					    data: 'malla='+datos[0]+'&asignatura='+datos[1],
+					    data: 'malla='+datos[0]+'&asignatura='+datos[1]+"&nombresearch="+datos[2],
 					    success: function(datos_recibidos) {
 					    		var from = datos_recibidos.split("||");
 					    		var ano = (new Date).getFullYear();
