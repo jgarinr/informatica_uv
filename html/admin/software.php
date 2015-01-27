@@ -112,7 +112,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Mencion de Software: <small>Edita la información de la mención de Software</small>
+                            Mención de Software: <small>Edita la información de la mención de Software</small>
                         </h1>
                     </div>
                 </div>
@@ -120,7 +120,7 @@
                     <div class="col-lg-12">
                       <div class="panel panel-primary">
                         <div class="panel-heading">
-                          <h3 class="panel-title">Información General</h3>
+                          <h3 class="panel-title"><i class='fa fa-info-circle'></i> Información General</h3>
                         </div>
                         <div class="panel-body">
                             <form class="form-horizontal">
@@ -131,8 +131,8 @@
                                     <textarea class="form-control" id="descripcion_mencion" name="descripcion_mencion" style="height: 150px;"></textarea>
                                   </div>
                                   <div class="col-md-3">  
-                                    <button type="button" class="btn btn-warning" id="boton_modifica_mencion" name="boton_modifica_mencion" disabled style="margin-bottom:10%;"><span class="glyphicon glyphicon-pencil"></span> Modificar Descripción</button>
-                                    <button type="button" class="btn btn-danger" id="boton_deshacer_modifica" name="boton_deshacer_modifica" disabled><span class="glyphicon glyphicon-refresh"></span> Modificar Descripción</button> 
+                                    <button type="button" class="btn btn-primary" id="boton_modifica_mencion" name="boton_modifica_mencion" disabled style="margin-bottom:10%;"><span class="glyphicon glyphicon-pencil"></span> Modificar Descripción</button>
+                                    <button type="button" class="btn btn-primary" id="boton_deshacer_modifica" name="boton_deshacer_modifica" disabled><span class="glyphicon glyphicon-refresh"></span> Reset</button> 
                                   </div>
                                 </div>
                                 <div class='alert alert-dismissible' role='alert' id='validar_actualizar'></div>
@@ -146,7 +146,7 @@
                     <div class="col-lg-12">
                       <div class="panel panel-primary">
                         <div class="panel-heading">
-                          <h3 class="panel-title">Ingresar una nueva Asignatura</h3>
+                          <h3 class="panel-title"><i class='fa fa-star'></i> Ingresar una nueva Asignatura</h3>
                         </div>
                         <div class="panel-body">
                             <form class='form-horizontal'><fieldset><div class='form-group'><label class='col-md-3 control-label' for='nombre_nuevo'>Nombre</label><div class='col-md-6'><input id='nombre_nuevo' name='nombre_nuevo' type='text' class='form-control input-md'></div></div><div class='form-group'><label class='col-md-3 control-label' for='descrip_corta_nueva'>Descripción Corta</label><div class='col-md-6'><select id='descrip_corta_nueva' name='descrip_corta_nueva' class='form-control'><option value='0' style='display:none;'>Seleccione</option><option value='INC502'>Asignatura Electiva de Especialidad I</option><option value='INC512'>Asignatura Electiva de Especialidad II</option><option value='INC600'>Asignatura Electiva de Especialidad III</option><option value='INC501'>Seminario de Especialidad I</option><option value='INC511'>Seminario de Especialidad II</option></select></div></div><div class='form-group'><label class='col-md-3 control-label' for='descrip_larga_new'>Descripción Larga</label><div class='col-md-3'><textarea class='form-control' id='descrip_larga_new' name='descrip_larga_new'></textarea></div></div><div class='form-group'><label class='col-md-3 control-label' for='profesor_new'>Profesor</label><div class='col-md-6'><input id='profesor_new' name='profesor_new' type='text' class='form-control input-md'></div></div><div class='form-group'><label class='col-md-3 control-label' for='foto_new'>Foto</label><div class='col-md-3'><input id='foto_new' name='foto_new' class='input-file' type='file' accept="image/*"></div></div><div class='form-group'><label class='col-md-3 control-label' for='boton_agregar_ramo'></label><div class='col-md-4'><button id='boton_agregar_ramo' class="btn btn-primary btn-success" type="button"><span class="glyphicon glyphicon-save"></span> Agregar Asignatura</button></div></div><div class='alert alert-dismissible' role='alert' id='validar_add_ramo'></div></fieldset></form>
@@ -158,7 +158,7 @@
                     <div class="col-lg-12">
                       <div class="panel panel-primary">
                         <div class="panel-heading">
-                          <h3 class="panel-title">Asignaturas de la Mención</h3>
+                          <h3 class="panel-title"><i class='fa fa-book'></i> Asignaturas de la Mención</h3>
                         </div>
                         <div class="panel-body" id="contenedor_redes">
                             <table id='tablaMencion' class='display'><tbody id="datos_tabla"><thead><tr><th>Nombre</th><th>Descripción Corta</th><th>Descripción Larga</th><th>Profesor</th><th>Estado</th><th>Mostrar / No Mostrar</th><th>Modificar</th><th>Borrar</th></tr></thead></tbody></table>

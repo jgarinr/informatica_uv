@@ -8,13 +8,22 @@ $( document ).ready(function() {
     $("#tablaNoAprobado").hide();
     $("#tablaAprobado").hide();
 
-       $("#boton_salir_admin").click(function(){
-        $(".modal-title").html("Cierre de Sesion");
-        $(".modal-body").html("Esta seguro de que desea cerrar la sesion");
-        $('#myModal3').modal({show:true});
-        $("#boton_aprobar_cierre").click(function(){
-            $(location).attr('href','../../logica/cierra_sesion.php');
-        });
+    $(".cuerpo_admin_docs").hide();
+
+    $("#boton_salir_admin").click(function(){
+        swal({
+                  title: "Cerrar Sesión",
+                  text: "Esta seguro de que desea cerrar la sesión",
+                  type: "info",
+                  showCancelButton: true,
+                  allowOutsideClick: true,
+                  confirmButtonClass: "btn-primary",
+                  confirmButtonText: "Ok",
+                  cancelButtonText: 'Cancelar',
+                  closeOnConfirm: false
+            }, function(){
+                $(location).attr('href','../../logica/cierra_sesion.php');
+        });    
     });
 
     $.ajax({
@@ -67,6 +76,9 @@ $( document ).ready(function() {
                 var aprobados = documentos[0].split("||");
                 var no_aprobados = documentos[1].split("||");
 
+                $("#presentacion_admin").hide();
+                $(".cuerpo_admin_docs").show();
+
                 switch(select_id) {
                     case "planComun_select":
                         $("#planICI_select option[value='0']").attr("selected",true);
@@ -109,14 +121,14 @@ $( document ).ready(function() {
                 }
                 
                 if(control_tabla == false){
-                    tab_no_aprob = $('#tablaNoAprobado').dataTable({
+                    $('#tablaNoAprobado').dataTable({
                         "scrollY":        "160px",
                         "searching": false,
                         "info": false,
                         "paging": false
                     });
 
-                    tab_aprob = $('#tablaAprobado').dataTable({
+                    $('#tablaAprobado').dataTable({
                         "scrollY":        "160px",
                         "searching": false,
                         "info": false,
@@ -125,50 +137,70 @@ $( document ).ready(function() {
                     control_tabla = true;
                 }
 
-                $("#validar_aprobacion").hide();
-
                 $(".botonAprobar").click(function(){
                     var tmp = $(this).attr('id').split("_");
                     var fila = tmp[1];
-                    $(".modal-title").html("Aprobar Documento");
-                    $(".modal-body").html('Esta seguro de aprobar el documento "<strong>'+$("#nombreNoAprobado_"+tmp[1]).text()+'</strong>"');
-                    $("#pie_de_modal").html("<button type='button' class='btn btn-success' id='boton_aprobar_html'><span class='glyphicon glyphicon-ok'></span> Aprobar</button><button type='button' class='btn btn-primary' data-dismiss='modal' id='cerrar_boton_aprobar_html'>Cerrar</button>");
-                    $('#myModal2').modal({show:true});
-
-                    $("#boton_aprobar_html").click(function(){
-                       $.ajax({
-                        url: '../../logica/setEstadosDescargas.php',
-                        type: 'POST',
-                        async: true,
-                        data: 'idDownload='+tmp[2],
-                        success: function(datos_recibidos) {
-                            if(datos_recibidos == 1){
-                                $(".modal-body").html("<div class='alert alert-dismissible alert-success' role='alert' id='validar_aprobacion'><strong>EXITO</strong> - El documento '"+$("#nombreNoAprobado_"+tmp[1]).text()+"' ha sido aprobado con exito. En breve sera redirigido a la gestion de documentos.</div>");
-                                $("#validar_aprobacion").show("slow");
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 3000);                               
-                            }else{
-                                $(".modal-body").html("<div class='alert alert-dismissible alert-danger' role='alert' id='validar_aprobacion'><strong>ERROR!</strong> - El documento '"+$("#nombreNoAprobado_"+tmp[1]).text()+"' no ha sido aprobado. Intente nuevamente</div>");                                
-                                $("#validar_aprobacion").show("slow");
-                                setTimeout(function() {
-                                    $('#validar_aprobacion').hide('slow');
-                                    $("#cerrar_boton_aprobar_html").click();
-                                }, 3000);
-                            }
+                    swal({
+                        title: "Aprobar Documento",
+                        text: "Esta seguro de aprobar el documento ''"+$("#nombreNoAprobado_"+tmp[1]).text()+"''",
+                        type: "info",
+                        showCancelButton: true,
+                        allowOutsideClick: true,
+                        confirmButtonClass: "btn-primary",
+                        confirmButtonText: "Ok",
+                        cancelButtonText: 'Cancelar',
+                        closeOnConfirm: false
+                    }, function(){
+                        $.ajax({
+                            url: '../../logica/setEstadosDescargas.php',
+                            type: 'POST',
+                            async: true,
+                            data: 'idDownload='+tmp[2],
+                            success: function(datos_recibidos) {
+                                if(datos_recibidos == 1){
+                                    swal({
+                                        title: "",
+                                        text: "El documento ha sido aprobado con exito. Haz click para recargar la página",
+                                        type: "success",
+                                        showCancelButton: false,
+                                          allowOutsideClick: false,
+                                          confirmButtonClass: "btn-success",
+                                          confirmButtonText: "Ok",
+                                          closeOnConfirm: false
+                                        }, function(){
+                                          location.reload();    
+                                        });                              
+                                }else{
+                                    swal({
+                                      title: "",
+                                      text: "El documento no ha sido aprobado con exito. Intente nuevamente",
+                                      type: "error",
+                                      showCancelButton: false,
+                                      allowOutsideClick: true,
+                                      confirmButtonClass: "btn-danger",
+                                      confirmButtonText: "Ok",
+                                      closeOnConfirm: true
+                                    });
+                                }
                             }
                         });
                     });
-                });
+                }); 
 
                 $(".botonEliminar").click(function(){
                     var tmp = $(this).attr('id').split("_");
-                    $(".modal-title").html("Eliminar Documento");
-                    $(".modal-body").html('Esta seguro de eliminar el documento "<strong>'+$("#nombreNoAprobado_"+tmp[1]).text()+'</strong>"');
-                    $("#pie_de_modal").html("<button type='button' class='btn btn-danger' id='boton_eliminar_html'><span class='glyphicon glyphicon-remove'></span> Eliminar</button><button type='button' class='btn btn-primary' data-dismiss='modal' id='cerrar_boton_aprobar_html'>Cerrar</button>");
-                    $('#myModal2').modal({show:true});
+                    swal({
+                          title: "Eliminar Documento",
+                          text: "Esta seguro de eliminar el documento ''"+$("#nombreNoAprobado_"+tmp[1]).text()+"''",
+                          type: "info",
+                          showCancelButton: true,
+                          allowOutsideClick: true,
+                          confirmButtonClass: "btn-primary",
+                          confirmButtonText: "Ok",
+                          cancelButtonText: 'Cancelar',
+                          closeOnConfirm: false
+                    }, function(){
 
-                    $("#boton_eliminar_html").click(function(){
                        $.ajax({
                         url: '../../logica/deleteDocumentos.php',
                         type: 'POST',
@@ -176,23 +208,33 @@ $( document ).ready(function() {
                         data: 'idEliminar='+tmp[2],
                         success: function(datos_recibidos) {
                             if(datos_recibidos == 1){
-                                $(".modal-body").html("<div class='alert alert-dismissible alert-success' role='alert' id='validar_aprobacion'><strong>EXITO</strong> - El documento '"+$("#nombreNoAprobado_"+tmp[1]).text()+"' ha sido eliminado con exito. En breve sera redirigido a la gestion de documentos.</div>");
-                                $("#validar_aprobacion").show("slow");
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 3000);                               
+                                swal({
+                                  title: "",
+                                  text: "El documento ha sido eliminado con exito. Haz click para recargar la página",
+                                  type: "success",
+                                  showCancelButton: false,
+                                  allowOutsideClick: false,
+                                  confirmButtonClass: "btn-success",
+                                  confirmButtonText: "Ok",
+                                  closeOnConfirm: false
+                                }, function(){
+                                  location.reload();    
+                                });                               
                             }else{
-                                $(".modal-body").html("<div class='alert alert-dismissible alert-danger' role='alert' id='validar_aprobacion'><strong>ERROR!</strong> - El documento '"+$("#nombreNoAprobado_"+tmp[1]).text()+"' no ha sido eliminado. Intente nuevamente</div>");                                
-                                $("#validar_aprobacion").show("slow");
-                                setTimeout(function() {
-                                    $('#validar_aprobacion').hide('slow');
-                                    $("#cerrar_boton_aprobar_html").click();
-                                }, 3000);
+                                swal({
+                                  title: "",
+                                  text: "El documento no ha sido eliminado con exito. Intente nuevamente",
+                                  type: "error",
+                                  showCancelButton: false,
+                                  allowOutsideClick: true,
+                                  confirmButtonClass: "btn-danger",
+                                  confirmButtonText: "Ok",
+                                  closeOnConfirm: true
+                                });
                             }
                             }
                         });
                     });
-
                 });
 
                 $(".botonModificar").click(function(){
@@ -223,7 +265,6 @@ $( document ).ready(function() {
                                         data: 'idDownload='+tmp[1]+'&title='+$("#new_titulo").val()+'&autor='+$("#new_autor").val()+'&coment='+$("#new_abstract").val(),
                                         success: function(datos_recibidos) {
                                                 if(datos_recibidos == 1){
-
                                                     if(tmp[3] == 0){
                                                         $("#nombreNoAprobado_"+tmp[2]).text($("#new_titulo").val());
                                                         $("#autorNoAprobado_"+tmp[2]).text($("#new_autor").val());
@@ -245,7 +286,7 @@ $( document ).ready(function() {
                                                         $('#validar_cambios_doc').hide('slow');
                                                     }, 5000);
                                                 }else{
-                                                    $("#validar_cambios_doc").html("<strong>ERROR! </strong>- El documento no ha sido modificado. Intente nuevamente");
+                                                    $("#validar_cambios_doc").html("<strong>ERROR! </strong>- El documento no ha sido modificado o no se han encontrado cambios. Intente nuevamente");
                                                     $("#validar_cambios_doc").removeClass("alert-success");
                                                     $("#validar_cambios_doc").addClass("alert-danger");
                                                     $("#validar_cambios_doc").show("slow");

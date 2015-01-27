@@ -6,6 +6,7 @@ $( document ).ready(function() {
     var numero_asignatura = "";
     var nombre_asignatura = "";
 
+    $(".cuerpo_admin_asignatura").hide();
 
     $.ajax({
         url: '../../logica/getAsignaturaDescargas.php',
@@ -78,51 +79,6 @@ $( document ).ready(function() {
         });    
     });
 
-    $("#ver_galeria_fotos").click(function(){
-        $.ajax({
-        url: '../../logica/galeriaFotos.php',
-        type: 'POST',
-        async: true,
-        data: 'dat=none',
-        success: function(datos_recibidos){
-                var fotos = datos_recibidos.split("||");
-                $(".modal-title").html("Galería de Imagenes");
-                $(".modal-body").html("");
-                var fila = 0;
-                var control_row = 1;
-                for (var i = 0;i<fotos.length-1;i++) {
-                    if(i==0){
-                        fila = fila + 1;
-                        $(".modal-body").append("<div class='row fila"+fila+"'><div class='col-md-2'><div class='thumbnail'><img src='"+fotos[i]+"' id='imagen_"+i+"'><div class='caption'><p align='center'><div class='btn-group'><button type='button' class='btn btn-primary btn-xs boton_cambia_foto' id='cambia_imagen_"+i+"'>Aplicar</button><button type='button' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span><span class='sr-only'>Toggle Dropdown</span></button><ul class='dropdown-menu' role='menu'><li><img src='"+fotos[i]+"' style='width:423px; height:310px;'></li></ul></div></p></div></div></div></div>");
-                    }else{
-                        if((i/6)!=control_row){
-                            $(".fila"+fila).append("<div class='col-md-2'><div class='thumbnail'><img src='"+fotos[i]+"' id='imagen_"+i+"'><div class='caption'><p align='center'><div class='btn-group'><button type='button' class='btn btn-primary btn-xs boton_cambia_foto' id='cambia_imagen_"+i+"'>Aplicar</button><button type='button' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span><span class='sr-only'>Toggle Dropdown</span></button><ul class='dropdown-menu dropdown-menu-right' role='menu'><li><img src='"+fotos[i]+"' style='width:423px; height:310px;'></li></ul></div></p></div></div></div>");
-                        }else{
-                            fila = fila + 1;
-                            control_row = control_row + 1;
-                            $(".modal-body").append("<div class='row fila"+fila+"'><div class='col-md-2'><div class='thumbnail'><img src='"+fotos[i]+"' id='imagen_"+i+"'><div class='caption'><p align='center'><div class='btn-group'><button type='button' class='btn btn-primary btn-xs boton_cambia_foto' id='cambia_imagen_"+i+"'>Aplicar</button><button type='button' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span><span class='sr-only'>Toggle Dropdown</span></button><ul class='dropdown-menu' role='menu'><li><img src='"+fotos[i]+"' style='width:423px; height:310px;'></li></ul></div></p></div></div></div></div>");
-                        }
-                    }                    
-                }
-                $('#myModal2').modal({show:true});
-
-                $(".boton_cambia_foto").click(function(){
-                    var dataID = $(this).attr("id").split("_");
-                    $("#foto_ramo").attr("src",$("#imagen_"+dataID[2]).attr("src"));
-                    $.ajax({
-                        url: '../../logica/updateUrlFotos.php',
-                        type: 'POST',
-                        async: true,
-                        data: 'name_change='+nombre_asignatura+'&newUrl='+$("#imagen_"+dataID[2]).attr("src"),
-                        success: function(datos_recibidos){
-                                $("#boton_cierra_modal_galeria").click();
-                            }
-                    });
-                });
-            }
-        });
-    });
-
     var control = false;
     var object = new Array();
     var object2 = new Array();
@@ -133,6 +89,54 @@ $( document ).ready(function() {
         var datos_envio = $(this).val().split("_");
         var valor = $(this).val();
         var select_id = $(this).attr("id");
+
+        $.ajax({
+        url: '../../logica/galeriaFotos.php',
+        type: 'POST',
+        async: true,
+        data: 'dat=none',
+        success: function(datos_recibidos){
+                var fotos = datos_recibidos.split("||");
+                var fila = 0;
+                var control_row = 1;
+                for (var i = 0;i<fotos.length-1;i++) {
+                    if(i==0){
+                        fila = fila + 1;
+                        $("#fotos_galeria").append("<div class='row fila"+fila+"'><div class='col-md-3'><div class='thumbnail'><img src='"+fotos[i]+"' id='imagen_"+i+"'><div class='caption'><p align='center'><button type='button' class='btn btn-primary boton_cambia_foto' title='Has click para cambiar la imagen' id='cambia_imagen_"+i+"'><span class='glyphicon glyphicon-ok'></span></button><button title='Has click para ver la imagen' style='margin-left:10%' type='button' class='btn btn-success boton_ver_foto' id='verFoto_"+i+"'><span class='glyphicon glyphicon-eye-open'></span></button></p></div></div></div></div>");
+                    }else{
+                        if((i/4)!=control_row){
+                            $(".fila"+fila).append("<div class='col-md-3'><div class='thumbnail'><img src='"+fotos[i]+"' id='imagen_"+i+"'><div class='caption'><p align='center'><button type='button' class='btn btn-primary boton_cambia_foto' title='Has click para cambiar la imagen' id='cambia_imagen_"+i+"'><span class='glyphicon glyphicon-ok'></span></button><button title='Has click para ver la imagen' style='margin-left:10%' type='button' class='btn btn-success boton_ver_foto' id='verFoto_"+i+"'><span class='glyphicon glyphicon-eye-open'></span></button></p></div></div></div>");
+                        }else{
+                            fila = fila + 1;
+                            control_row = control_row + 1;
+                            $("#fotos_galeria").append("<div class='row fila"+fila+"'><div class='col-md-3'><div class='thumbnail'><img src='"+fotos[i]+"' id='imagen_"+i+"'><div class='caption'><p align='center'><button type='button' class='btn btn-primary boton_cambia_foto' title='Has click para cambiar la imagen' id='cambia_imagen_"+i+"'><span class='glyphicon glyphicon-ok'></span></button><button title='Has click para ver la imagen' style='margin-left:10%' type='button' class='btn btn-success boton_ver_foto' id='verFoto_"+i+"'><span class='glyphicon glyphicon-eye-open'></span></button></p></div></div></div></div>");
+                        }
+                    }                    
+                }
+
+                $(".boton_ver_foto").click(function(){
+                    var data = $(this).attr("id").split("_");
+                    $(".modal-body").html("<img src='"+fotos[data[1]]+"' height='464' width='568'>");
+                    $('#myModal').modal({show:true});
+                });
+                
+                $(".boton_cambia_foto").click(function(){
+                    var dataID = $(this).attr("id").split("_");
+                    $("#foto_ramo").attr("src",$("#imagen_"+dataID[2]).attr("src"));
+                    $.ajax({
+                        url: '../../logica/updateUrlFotos.php',
+                        type: 'POST',
+                        async: true,
+                        data: 'name_change='+nombre_asignatura+'&newUrl='+$("#imagen_"+dataID[2]).attr("src"),
+                        success: function(datos_recibidos){
+                            }
+                    });
+                });
+        }
+    });
+
+
+
         $.ajax({
         url: '../../logica/getAsignaturaInfo.php',
         type: 'POST',
@@ -148,6 +152,9 @@ $( document ).ready(function() {
                 $("#formObjetivos").show();
                 $("#formAddObjt").show();
                 $("#formObjetivosRemove").show();
+
+                $("#presentacion_admin").hide();
+                $(".cuerpo_admin_asignatura").show();
 
                 switch(select_id) {
                     case "planComun_select":

@@ -1,13 +1,19 @@
 $( document ).ready(function() {
 
     $("#boton_salir_admin").click(function(){
-        $(".modal-title").html("Cierre de Sesion");
-        $(".modal-body").html("Esta seguro de que desea cerrar la sesion");
-        $(".modal-footer").html("<button type='button' class='btn btn-success' id='boton_aprobar_cierre'><span class='glyphicon glyphicon-ok'></span> Aprobar</button><button type='button' class='btn btn-primary' data-dismiss='modal'>Cerrar</button>");
-        $('#myModal').modal({show:true});
-        $("#boton_aprobar_cierre").click(function(){
-            $(location).attr('href','../../logica/cierra_sesion.php');
-        });
+        swal({
+                  title: "Cerrar Sesión",
+                  text: "Esta seguro de que desea cerrar la sesión",
+                  type: "info",
+                  showCancelButton: true,
+                  allowOutsideClick: true,
+                  confirmButtonClass: "btn-primary",
+                  confirmButtonText: "Ok",
+                  cancelButtonText: 'Cancelar',
+                  closeOnConfirm: false
+            }, function(){
+                $(location).attr('href','../../logica/cierra_sesion.php');
+        });    
     });
 	
     $.ajax({
@@ -60,14 +66,18 @@ $( document ).ready(function() {
                 // ---------------------- ELIMINAR ACADEMICO
                 $(".botonEliminarAcademico").click(function(){
                     var dat = $(this).attr("id").split("_");
-                    $("#myModalLabel").html("Borrar un Académico");
-                    $(".modal-footer").html("<button type='button' class='btn btn-danger' id='boton_borrar_academico'>Borrar</button><button type='button' class='btn btn-primary' data-dismiss='modal'>Cerrar</button>");
-                    $("#cuerpoModal").html("<div class='row'><div class='col-lg-12'><div class='alert alert-dismissible' role='alert' id='validar_descarga'></div></div></div><div class='row campo_borra_academico'><div class='col-lg-12'>Desea eliminar al académico <strong>"+$("#nombreAcademico_"+dat[1]).text()+"</strong></div></div>");
-                    $('#myModal').modal({show:true});
+                    swal({
+                        title: "Eliminar Académico",
+                        text: "Desea eliminar al académico ''"+$("#nombreAcademico_"+dat[1]).text()+"''",
+                        type: "info",
+                        showCancelButton: true,
+                        allowOutsideClick: true,
+                        confirmButtonClass: "btn-primary",
+                        confirmButtonText: "Ok",
+                        cancelButtonText: 'Cancelar',
+                        closeOnConfirm: false
+                    }, function(){
 
-                    $("#validar_descarga").hide();
-
-                    $("#boton_borrar_academico").click(function(){
                         $.ajax({
                             url: '../../logica/deletePersonal.php',
                             type: 'POST',
@@ -75,23 +85,29 @@ $( document ).ready(function() {
                             data: 'tipo=Academico&idPer='+dat[1],
                             success: function(datos_recibidos){
                                 if(datos_recibidos == "ok"){
-                                    $("#validar_descarga").removeClass("alert-danger");
-                                    $("#validar_descarga").addClass("alert-success");
-                                    $("#validar_descarga").html("<strong>EXITO!</strong> - El académico <strong>"+$("#nombreAcademico_"+dat[1]).text()+"</strong> ha sido eliminado. Al cerrar esta ventana se recargará la página.");
-                                    $("#validar_descarga").show("slow");
-                                    $(".campo_borra_academico").html("");
-                                    $(".modal-footer").html("");
-                                    $("#myModal").on('hide.bs.modal', function(e){
-                                        location.reload();
-                                    }); 
+                                    swal({
+                                        title: "",
+                                        text: "El académico ''"+$("#nombreAcademico_"+dat[1]).text()+"'' ha sido eliminado con exito. Haz click para recargar la página",
+                                        type: "success",
+                                        showCancelButton: false,
+                                          allowOutsideClick: false,
+                                          confirmButtonClass: "btn-success",
+                                          confirmButtonText: "Ok",
+                                          closeOnConfirm: false
+                                        }, function(){
+                                          location.reload();    
+                                        }); 
                                 }else{
-                                    $("#validar_descarga").removeClass("alert-success");
-                                    $("#validar_descarga").addClass("alert-danger");
-                                    $("#validar_descarga").html("<strong>ERROR!</strong> - El académico <strong>"+$("#nombreAcademico_"+dat[1]).text()+"</strong> no se ha sido eliminado. Intente nuevamente.");
-                                    $("#validar_descarga").show("slow");
-                                    setTimeout(function() {
-                                        $("#validar_descarga").hide("slow");
-                                    }, 4000);
+                                    swal({
+                                      title: "",
+                                      text: "El académico no ha sido eliminado con exito. Intente nuevamente",
+                                      type: "error",
+                                      showCancelButton: false,
+                                      allowOutsideClick: true,
+                                      confirmButtonClass: "btn-danger",
+                                      confirmButtonText: "Ok",
+                                      closeOnConfirm: true
+                                    });
                                 }
                             }
                         });
@@ -101,14 +117,17 @@ $( document ).ready(function() {
                 // ---------------------- ELIMINAR AYUDANTE 
                 $(".botonEliminarAyudante").click(function(){
                     var dat = $(this).attr("id").split("_");
-                    $("#myModalLabel").html("Borrar un Ayudante");
-                    $(".modal-footer").html("<button type='button' class='btn btn-danger' id='boton_borrar_ayudante'>Borrar</button><button type='button' class='btn btn-primary' data-dismiss='modal'>Cerrar</button>");
-                    $("#cuerpoModal").html("<div class='row'><div class='col-lg-12'><div class='alert alert-dismissible' role='alert' id='validar_descarga'></div></div></div><div class='row campo_borra_ayudante'><div class='col-lg-12'>Desea eliminar al ayudante <strong>"+$("#nombreAyudante_"+dat[1]).text()+"</strong></div></div>");
-                    $('#myModal').modal({show:true});
-
-                    $("#validar_descarga").hide();
-
-                    $("#boton_borrar_ayudante").click(function(){
+                    swal({
+                        title: "Eliminar Ayudante",
+                        text: "Desea eliminar al ayudante ''"+$("#nombreAyudante_"+dat[1]).text()+"''",
+                        type: "info",
+                        showCancelButton: true,
+                        allowOutsideClick: true,
+                        confirmButtonClass: "btn-primary",
+                        confirmButtonText: "Ok",
+                        cancelButtonText: 'Cancelar',
+                        closeOnConfirm: false
+                    }, function(){
                         $.ajax({
                             url: '../../logica/deletePersonal.php',
                             type: 'POST',
@@ -116,23 +135,29 @@ $( document ).ready(function() {
                             data: 'tipo=Ayudante&idPer='+dat[1],
                             success: function(datos_recibidos){
                                 if(datos_recibidos == "ok"){
-                                    $("#validar_descarga").removeClass("alert-danger");
-                                    $("#validar_descarga").addClass("alert-success");
-                                    $("#validar_descarga").html("<strong>EXITO!</strong> - El ayudante <strong>"+$("#nombreAyudante_"+dat[1]).text()+"</strong> ha sido eliminado. Al cerrar esta ventana se recargará la página.");
-                                    $("#validar_descarga").show("slow");
-                                    $(".campo_borra_ayudante").html("");
-                                    $(".modal-footer").html("");
-                                    $("#myModal").on('hide.bs.modal', function(e){
-                                        location.reload();
-                                    }); 
+                                    swal({
+                                        title: "",
+                                        text: "El ayudante ''"+$("#nombreAyudante_"+dat[1]).text()+"'' ha sido eliminado con exito. Haz click para recargar la página",
+                                        type: "success",
+                                        showCancelButton: false,
+                                          allowOutsideClick: false,
+                                          confirmButtonClass: "btn-success",
+                                          confirmButtonText: "Ok",
+                                          closeOnConfirm: false
+                                        }, function(){
+                                          location.reload();    
+                                        });
                                 }else{
-                                    $("#validar_descarga").removeClass("alert-success");
-                                    $("#validar_descarga").addClass("alert-danger");
-                                    $("#validar_descarga").html("<strong>ERROR!</strong> - El ayudante <strong>"+$("#nombreAyudante_"+dat[1]).text()+"</strong> no se ha sido eliminado. Intente nuevamente.");
-                                    $("#validar_descarga").show("slow");
-                                    setTimeout(function() {
-                                        $("#validar_descarga").hide("slow");
-                                    }, 4000);
+                                    swal({
+                                      title: "",
+                                      text: "El ayudante no ha sido eliminado con exito. Intente nuevamente",
+                                      type: "error",
+                                      showCancelButton: false,
+                                      allowOutsideClick: true,
+                                      confirmButtonClass: "btn-danger",
+                                      confirmButtonText: "Ok",
+                                      closeOnConfirm: true
+                                    });
                                 }
                             }
                         }); 
@@ -142,14 +167,18 @@ $( document ).ready(function() {
                 // ---------------------- ELIMINAR ADMINISTRATIVO
                 $(".botonEliminarAdministrativo").click(function(){
                     var dat = $(this).attr("id").split("_");
-                    $("#myModalLabel").html("Borrar un Administrativo");
-                    $(".modal-footer").html("<button type='button' class='btn btn-danger' id='boton_borrar_adm'>Borrar</button><button type='button' class='btn btn-primary' data-dismiss='modal'>Cerrar</button>");
-                    $("#cuerpoModal").html("<div class='row'><div class='col-lg-12'><div class='alert alert-dismissible' role='alert' id='validar_descarga'></div></div></div><div class='row campo_borra_adm'><div class='col-lg-12'>Desea eliminar al administrativo <strong>"+$("#nombreAdministrativo_"+dat[1]).text()+"</strong></div></div>");
-                    $('#myModal').modal({show:true});
+                    swal({
+                        title: "Eliminar Administrativo",
+                        text: "Desea eliminar al administrativo ''"+$("#nombreAdministrativo_"+dat[1]).text()+"''",
+                        type: "info",
+                        showCancelButton: true,
+                        allowOutsideClick: true,
+                        confirmButtonClass: "btn-primary",
+                        confirmButtonText: "Ok",
+                        cancelButtonText: 'Cancelar',
+                        closeOnConfirm: false
+                    }, function(){
 
-                    $("#validar_descarga").hide();
-
-                    $("#boton_borrar_adm").click(function(){
                         $.ajax({
                             url: '../../logica/deletePersonal.php',
                             type: 'POST',
@@ -157,23 +186,29 @@ $( document ).ready(function() {
                             data: 'tipo=Adm&idPer='+dat[1],
                             success: function(datos_recibidos){
                                 if(datos_recibidos == "ok"){
-                                    $("#validar_descarga").removeClass("alert-danger");
-                                    $("#validar_descarga").addClass("alert-success");
-                                    $("#validar_descarga").html("<strong>EXITO!</strong> - El administrativo <strong>"+$("#nombreAdministrativo_"+dat[1]).text()+"</strong> ha sido eliminado. Al cerrar esta ventana se recargará la página.");
-                                    $("#validar_descarga").show("slow");
-                                    $(".campo_borra_adm").html("");
-                                    $(".modal-footer").html("");
-                                    $("#myModal").on('hide.bs.modal', function(e){
-                                        location.reload();
-                                    }); 
+                                    swal({
+                                        title: "",
+                                        text: "El administrativo ''"+$("#nombreAdministrativo_"+dat[1]).text()+"'' ha sido eliminado con exito. Haz click para recargar la página",
+                                        type: "success",
+                                        showCancelButton: false,
+                                          allowOutsideClick: false,
+                                          confirmButtonClass: "btn-success",
+                                          confirmButtonText: "Ok",
+                                          closeOnConfirm: false
+                                        }, function(){
+                                          location.reload();    
+                                        }); 
                                 }else{
-                                    $("#validar_descarga").removeClass("alert-success");
-                                    $("#validar_descarga").addClass("alert-danger");
-                                    $("#validar_descarga").html("<strong>ERROR!</strong> - El administrativo <strong>"+$("#nombreAdministrativo_"+dat[1]).text()+"</strong> no se ha sido eliminado. Intente nuevamente.");
-                                    $("#validar_descarga").show("slow");
-                                    setTimeout(function() {
-                                        $("#validar_descarga").hide("slow");
-                                    }, 4000);
+                                    swal({
+                                      title: "",
+                                      text: "El administrativo no ha sido eliminado con exito. Intente nuevamente",
+                                      type: "error",
+                                      showCancelButton: false,
+                                      allowOutsideClick: true,
+                                      confirmButtonClass: "btn-danger",
+                                      confirmButtonText: "Ok",
+                                      closeOnConfirm: true
+                                    });
                                 }
                             }
                         }); 
@@ -192,7 +227,7 @@ $( document ).ready(function() {
                             var data_rec = datos_recibidos.split("++");
                             $("#myModalLabel").html("Modificar Ayudante de Laboratorio");
                             $(".modal-footer").html("<button type='button' class='btn btn-primary' data-dismiss='modal'>Cerrar</button>");
-                            $("#cuerpoModal").html("<div class='row'><div class='col-lg-12'><div class='alert alert-dismissible' role='alert' id='validar_descarga'></div></div></div><div class='row' id='inputs_agrega_ayudante'><div class='col-lg-6'><div class='panel panel-primary'><div class='panel-heading'><h3 class='panel-title'>Datos Personales</h3></div><div class='panel-body'><form class='form-horizontal'><fieldset><div class='form-group'><label class='col-md-3 control-label' for='nombre_ayudante'>Nombre</label><div class='col-md-8'><input id='nombre_ayudante' name='nombre_ayudante' type='text' class='form-control input-md'></div></div><div class='form-group'><label class='col-md-3 control-label' for='correo_ayudante'>Correo UV</label><div class='col-md-8'><input id='correo_ayudante' name='correo_ayudante' type='text' class='form-control input-md'></div></div><div class='form-group'><label class='col-md-3 control-label' for='estado_ayudante'>Estado</label><div class='col-md-8'><select id='estado_ayudante' name='estado_ayudante' class='form-control'><option value='0'>No Activo</option><option value='1'>Activo</option></select></div></div><div class='form-group'><label class='col-md-3 control-label'></label><div class='col-md-8'><a id='modificar_ayudante_boton' name='modificar_ayudante_boton' class='btn btn-success'><span class='glyphicon glyphicon-hand-down'></span> Modificar</a><a style='margin-left:2%;' id='reset_ayudante' name='reset_ayudante' class='btn btn-danger' ><span class='glyphicon glyphicon-remove'></span> Reset</a></div></div></fieldset></form></div></div><div class='panel panel-primary'><div class='panel-heading'><h3 class='panel-title'>Galeria de Imagenes</h3></div><div class='panel-body panel_galeria' style='height:210px; overflow-y:scroll;'></div></div></div><div class='col-lg-6'><div class='panel panel-primary'><div class='panel-heading'><h3 class='panel-title'>Fotografía</h3></div><div class='panel-body'><img src='"+data_rec[2]+"' id='foto_ramo_per' width=250' style='margin-bottom: 5%; margin-left:15%;'><form class='form-horizontal'><fieldset><div class='form-group'><label class='col-md-2 control-label' for='foto_ayudante'>Foto</label><div class='col-lg-6'><input id='foto_ayudante' name='foto_ayudante' class='input-file' type='file' accept='image/*'></div></div></fieldset></form><button type='button' class='btn btn-warning btn-block' id='boton_modifica_foto' name='boton_modifica_foto' disabled=''><span class='glyphicon glyphicon-picture'></span> Cambiar Imagen</button></div></div></div></div>");
+                            $("#cuerpoModal").html("<div class='row'><div class='col-lg-12'><div class='alert alert-dismissible' role='alert' id='validar_descarga'></div></div></div><div class='row' id='inputs_agrega_ayudante'><div class='col-lg-6'><div class='panel panel-danger'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-info-circle'></i> Datos Personales</h3></div><div class='panel-body'><form class='form-horizontal'><fieldset><div class='form-group'><label class='col-md-3 control-label' for='nombre_ayudante'>Nombre</label><div class='col-md-8'><input id='nombre_ayudante' name='nombre_ayudante' type='text' class='form-control input-md'></div></div><div class='form-group'><label class='col-md-3 control-label' for='correo_ayudante'>Correo UV</label><div class='col-md-8'><input id='correo_ayudante' name='correo_ayudante' type='text' class='form-control input-md'></div></div><div class='form-group'><label class='col-md-3 control-label' for='estado_ayudante'>Estado</label><div class='col-md-8'><select id='estado_ayudante' name='estado_ayudante' class='form-control'><option value='0'>No Activo</option><option value='1'>Activo</option></select></div></div><div class='form-group'><label class='col-md-3 control-label'></label><div class='col-md-8'><a id='modificar_ayudante_boton' name='modificar_ayudante_boton' class='btn btn-success'><span class='glyphicon glyphicon-hand-down'></span> Modificar</a><a style='margin-left:2%;' id='reset_ayudante' name='reset_ayudante' class='btn btn-danger' ><span class='glyphicon glyphicon-remove'></span> Reset</a></div></div></fieldset></form></div></div><div class='panel panel-danger'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-image'></i> Galería de Imagenes</h3></div><div class='panel-body panel_galeria' style='height:210px; overflow-y:scroll;'></div></div></div><div class='col-lg-6'><div class='panel panel-danger'><div class='panel-heading'><h3 class='panel-title'><i class='fa fa-camera'></i> Fotografía</h3></div><div class='panel-body'><img src='"+data_rec[2]+"' id='foto_ramo_per' width='278' style='margin-bottom: 5%; margin-left:15%;'><form class='form-horizontal'><fieldset><div class='form-group'><label class='col-md-2 control-label' for='foto_ayudante'>Foto</label><div class='col-lg-6'><input id='foto_ayudante' name='foto_ayudante' class='input-file' type='file' accept='image/*'></div></div></fieldset></form><button type='button' class='btn btn-warning btn-block' id='boton_modifica_foto' name='boton_modifica_foto' disabled=''><span class='glyphicon glyphicon-picture'></span> Cambiar Imagen</button></div></div></div></div>");
                             
                             $(".fila_galeria").hide();
 
@@ -242,7 +277,6 @@ $( document ).ready(function() {
                                                 async: true,
                                                 data: 'tipopersona=AYU&idAyu='+tmp[1]+'&newUrl='+$("#imagen_"+dataID[2]).attr("src"),
                                                 success: function(datos_recibidos){
-                                                    alert(datos_recibidos);
                                                     }
                                             });
                                         });

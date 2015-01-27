@@ -43,6 +43,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="../../js/DataTables-1.10.3/media/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/sweet-alert.css">
 </head>
 
 <body>
@@ -203,7 +204,7 @@
     </div>
     <!-- /#wrapper -->
 
-       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
@@ -222,6 +223,7 @@
     <script src="../../js/DataTables-1.10.3/media/js/jquery.dataTables.min.js"></script>
     <script src="js/multi_select_check/jquery-ui.min.js"></script>
     <script src="js/multi_select_check/jquery.multiselect.js"></script>
+    <script src="../../js/sweet-alert.js"></script>
     <script src="js/funcion_admin_personas.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

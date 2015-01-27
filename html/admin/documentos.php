@@ -41,6 +41,7 @@
     <![endif]-->
 
     <link href="../../js/DataTables-1.10.3/media/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/sweet-alert.css">
 
 </head>
 
@@ -126,7 +127,7 @@
                       <form class="form-horizontal">
                           <fieldset>                    
                           <div class="form-group">
-                            <label class="col-md-3 control-label" for="planComun_select" title="Plan Comun de Ingeniería Civil Informática">Comun</label>
+                            <label class="col-md-3 control-label" for="planComun_select" title="Plan Comun de Ingeniería Civil Informática">Común</label>
                             <div class="col-md-9">
                               <select id="planComun_select" name="planComun_select" class="form-control enlace_asig_modificar">
                               </select>
@@ -183,9 +184,15 @@
                    <div class="col-lg-12">
                         <div class='alert alert-dismissible' role='alert' id='validar_descarga'><div id="contenido_alert"></div></div>
                     </div>
+                </div>
+
+                <div class="row" id="presentacion_admin">
+                    <div class="col-lg-12">
+                      <img src="../../images/banner/logo_admin.png" id="conten_img_admin">
+                    </div>
                 </div>            
 
-                <div class="row">
+                <div class="row cuerpo_admin_docs">
                     <div class="col-lg-12"> 
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -211,7 +218,7 @@
                         </div>                       
                     </div>
                 </div>
-                <div class="row">
+                <div class="row cuerpo_admin_docs">
                     <div class="col-lg-12">        
                         <div class="panel panel-primary">
                             <div class="panel-heading">
@@ -250,7 +257,6 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h3 class="modal-title" id="myModalLabel"></h3>
       </div>
       <div class="modal-body" id="cuerpoModal" style="text-align : justify;">
@@ -262,45 +268,10 @@
   </div>
 </div>
 
-
-       <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h3 class="modal-title" id="myModalLabel"></h3>
-          </div>
-          <div class="modal-body" id="cuerpoModal" style="text-align : justify;">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success" id="boton_aprobar_cierre"><span class="glyphicon glyphicon-ok"></span> Aprobar</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h3 class="modal-title" id="myModalLabel"></h3>
-      </div>
-      <div class="modal-body" id="cuerpoModal" style="text-align : justify;">
-      </div>
-      <div class="modal-footer" id="pie_de_modal">
-        <button type="button" class="btn btn-success" id="boton_aprobar_html"><span class="glyphicon glyphicon-ok"></span> Aprobar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="cerrar_boton_aprobar_html">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
     <!-- jQuery Version 1.11.0 -->
     <script src="js/jquery-1.11.0.js"></script>
     <script src="../../js/DataTables-1.10.3/media/js/jquery.dataTables.min.js"></script>
+    <script src="../../js/sweet-alert.js"></script>
     <script src="js/funcion_admin_docs.js"></script>
     
     <!-- Bootstrap Core JavaScript -->

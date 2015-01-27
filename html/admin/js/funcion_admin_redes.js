@@ -14,12 +14,19 @@ $( document ).ready(function() {
     });
 
     $("#boton_salir_admin").click(function(){
-        $(".modal-title").html("Cierre de Sesion");
-        $(".modal-body").html("Esta seguro de que desea cerrar la sesion");
-        $('#myModal3').modal({show:true});
-        $("#boton_aprobar_cierre").click(function(){
-            $(location).attr('href','../../logica/cierra_sesion.php');
-        });
+        swal({
+                  title: "Cerrar Sesión",
+                  text: "Esta seguro de que desea cerrar la sesión",
+                  type: "info",
+                  showCancelButton: true,
+                  allowOutsideClick: true,
+                  confirmButtonClass: "btn-primary",
+                  confirmButtonText: "Ok",
+                  cancelButtonText: 'Cancelar',
+                  closeOnConfirm: false
+            }, function(){
+                $(location).attr('href','../../logica/cierra_sesion.php');
+        });    
     });
 
     $("#descripcion_mencion").keyup(function(){
@@ -48,24 +55,31 @@ $( document ).ready(function() {
             data: 'mencion=RED&descrip='+$("#descripcion_mencion").val(),
             success: function(datos_recibidos) {
                     if(datos_recibidos == "ok"){
-                        $("#validar_actualizar").removeClass("alert-danger");
-                        $("#validar_actualizar").addClass("alert-success");
-                        $("#validar_actualizar").html("<strong>EXITO</strong> - La descripción de la Mencion de Redes ha sido actualizada.");
-                        $("#validar_actualizar").show("slow");
-                        setTimeout(function() {
-                            $('#validar_actualizar').hide('slow');
-                        }, 3000);
+                        swal({
+                          title: "",
+                          text: "La descripción de la Mencion de Redes ha sido actualizada",
+                          type: "success",
+                          showCancelButton: false,
+                          allowOutsideClick: true,
+                          confirmButtonClass: "btn-success",
+                          confirmButtonText: "Ok",
+                          closeOnConfirm: true
+                        });
+
                         descrip_mencion = $("#descripcion_mencion").val();
                         $("#boton_modifica_mencion").attr("disabled","disabled");
                         $("#boton_deshacer_modifica").attr("disabled","disabled");
                     }else{
-                        $("#validar_actualizar").removeClass("alert-success");
-                        $("#validar_actualizar").addClass("alert-danger");
-                        $("#validar_actualizar").html("<strong>ERROR!</strong> - La descripción de la Mencion de Redes no ha sido actualizada. Intente nuevamente");
-                        $("#validar_actualizar").show("slow");
-                        setTimeout(function() {
-                            $('#validar_actualizar').hide('slow');
-                        }, 3000);
+                        swal({
+                          title: "",
+                          text: "La descripción de la Mencion de Redes no ha sido actualizada. Intente nuevamente",
+                          type: "error",
+                          showCancelButton: false,
+                          allowOutsideClick: true,
+                          confirmButtonClass: "btn-error",
+                          confirmButtonText: "Ok",
+                          closeOnConfirm: true
+                        });
                     }
                 }
         });

@@ -239,8 +239,8 @@ ul.alert-dropdown {
 }
 
 #foto_ramo{
-    height: 100%;
-    width: 100%;
+    height: 384px;
+    width: 397px;
 }
 
 .nombre_archivo{
@@ -266,4 +266,17 @@ ul.alert-dropdown {
 
 #modificarDoc{
     margin-right: 10px !important;
+}
+
+#conten_img_admin{
+    padding: 6%;
+}
+
+#conten_img_admin{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.4;
+    height: 396px; 
+    width: 749px;
 }

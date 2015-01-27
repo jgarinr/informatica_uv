@@ -77,7 +77,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="index.php"><i class="fa fa-book"></i> Asignaturas</a>
+                        <a href="asignaturas.php"><i class="fa fa-book"></i> Asignaturas</a>
                     </li>
                     <li>
                         <a href="documentos.php"><span class="glyphicon glyphicon-file"></span> Documentos</a>
@@ -115,7 +115,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Información: <small>Edita la información de la asignatura</small>
+                            Asignaturas: <small>Edita la información de la asignaturas</small>
                         </h1>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                       <form class="form-horizontal">
                           <fieldset>                    
                           <div class="form-group">
-                            <label class="col-md-3 control-label" for="planComun_select" title="Plan Comun de Ingeniería Civil Informática">Comun</label>
+                            <label class="col-md-3 control-label" for="planComun_select" title="Plan Comun de Ingeniería Civil Informática">Común</label>
                             <div class="col-md-9">
                               <select id="planComun_select" name="planComun_select" class="form-control enlace_asig_modificar">
                               </select>
@@ -181,39 +181,58 @@
                   </div>  
                 </div>
 
-                <div class="row">
-                   <div class="col-lg-12">
-                        <div class='alert alert-dismissible' role='alert' id='validar_descarga'><div id="contenido_alert"></div></div>
+
+                <div class="row" id="presentacion_admin">
+                    <div class="col-lg-12">
+                      <img src="../../images/banner/logo_admin.png" id="conten_img_admin">
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row cuerpo_admin_asignatura">
                     <div class="col-lg-6">
-                        <br>
-                        <form class="form-horizontal">
+                      <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-info-circle"></i> Información General</h3>
+                      </div>
+                        <div class="panel-body">
+                          <form class="form-horizontal">
                             <fieldset>
                                 <div class="form-group">
-                                  <label class="col-md-3 control-label" for="profesor_asignatura">Profesor</label>  
+                                  <label class="col-md-2 control-label" for="profesor_asignatura">Profesor</label>  
                                   <div class="col-md-5">
                                   <input id="profesor_asignatura" name="profesor_asignatura" type="text" class="form-control input-md" disabled> 
                                   </div>
-                                  <div class="col-md-3">  
-                                    <a class="btn btn-primary" id="boton_modifica_profesor" name="boton_modifica_profesor"><span class="glyphicon glyphicon-pencil"></span> Modificar Profesor</a> 
+                                  <div class="col-md-5">  
+                                    <a class="btn btn-primary btn-block" id="boton_modifica_profesor" name="boton_modifica_profesor"><span class="glyphicon glyphicon-pencil"></span> Cambiar Profesor</a> 
                                   </div>
                                 </div>
                                 <div class="form-group">
-                                  <label class="col-md-3 control-label" for="comentario_asignarura">Comentarios</label>
+                                  <label class="col-md-2 control-label" for="comentario_asignarura">Descripción</label>
                                   <div class="col-md-5">                     
                                     <textarea class="form-control" id="comentario_asignatura" name="comentario_asignatura" disabled></textarea>
-                                    <span class="help-block">Información acerca de la asignatura (comentarios)</span>
+                                    <span class="help-block">Información acerca de la asignatura (Descripción)</span>
                                   </div>
-                                  <div class="col-md-3">
-                                    <a class="btn btn-primary" id="boton_modifica_comentario" name="boton_modifica_comentario"><span class="glyphicon glyphicon-pencil"></span> Modificar Comenterio</a>
+                                  <div class="col-md-5">
+                                    <a class="btn btn-primary btn-block" id="boton_modifica_comentario" name="boton_modifica_comentario"><span class="glyphicon glyphicon-pencil"></span> Cambiar Descripción</a>
                                   </div>
                                 </div>
-                                <div class="form-group" id="formObjetivos">
-                                  <label class="col-md-3 control-label" for="objet_asig">Objetivos</label>
-                                  <div class="col-md-9">
+                            </fieldset>
+                        </form>
+                      </div>
+                    </div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-info-tags"></i> Objetivos Asignatura</h3>
+                      </div>
+                        <div class="panel-body">
+                        <form class="form-horizontal">
+                            <fieldset>
+                              <div class="form-group" id="formObjetivos">
+                                  <label class="col-md-2 control-label" for="objet_asig">Objetivos</label>
+                                  <div class="col-md-8">
                                     <select id="objet_asig" name="objet_asig" class="form-control" multiple="multiple" disabled>
                                     </select>
                                     <span class="help-block">Los objetivos marcados seran visibles para los usuarios</span>
@@ -221,15 +240,15 @@
                                   </div>
                                 </div>
                                 <div class="form-group" id="formAddObjt">
-                                  <label class="col-md-3 control-label" for="obj_new_asignatura">Nuevo Objetivo</label>  
-                                  <div class="col-md-9">
+                                  <label class="col-md-2 control-label" for="obj_new_asignatura">Nuevo Objetivo</label>  
+                                  <div class="col-md-8">
                                   <textarea class="form-control" id="obj_new_asignatura" name="obj_new_asignatura"></textarea><br>
                                   <a class="btn btn-primary" id="boton_add_objetivo" name="boton_add_objetivo"><span class="glyphicon glyphicon-import"></span> Agregar Objetivo</a> 
                                   </div>
                                 </div>
                                 <div class="form-group" id="formObjetivosRemove">
-                                  <label class="col-md-3 control-label" for="objet_asig_remove">Borrar Objetivos</label>
-                                  <div class="col-md-9">
+                                  <label class="col-md-2 control-label" for="objet_asig_remove">Borrar Objetivos</label>
+                                  <div class="col-md-8">
                                     <select id="objet_asig_remove" name="objet_asig_remove" class="form-control" multiple="multiple" disabled>
                                     </select>
                                     <span class="help-block">Los objetivos marcados seran borrados del sistema</span>
@@ -238,34 +257,54 @@
                                 </div>
                             </fieldset>
                         </form>
+                      </div>
                     </div>
-                    <div class="col-lg-6">
-                        <br>
+                    </div>
+                </div>
 
+                <div class="row cuerpo_admin_asignatura">
+                  <div class="col-lg-5"> 
+                      <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-camera"></i> Imagen de la Asignatura</h3>
+                      </div>
+                      <div class="panel-body">
+                        
                         <form class="form-horizontal">
-                            <fieldset>
-                                <div class="form-group">                                
-                                    <label class="col-md-3 control-label" for="foto_asignatura"></label>  
-                                      <div class="col-md-9">
-                                         <div style="border:1px solid;" id="foto_ramo_marco"><img src="" id="foto_ramo"></div> 
-                                      </div>
-                                </div>
-                                <div class="form-group">
-                                  <label class="col-md-3 control-label" for="foto_asignatura">Foto</label>  
-                                  <div class="col-md-9">
-                                  <input id="foto_asignatura" name="foto_asignatura" type="file" class="form-control input-md" disabled accept="image/*"> 
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label" for="foto_asignatura"></label>  
-                                <div class="col-md-9">  
-                                    <button type='button' class="btn btn-primary btn-block" id="boton_modifica_foto" name="boton_modifica_foto"><span class="glyphicon glyphicon-picture"></span> Cambiar Imagen</button>
-                                    <button type='button' class="btn btn-primary btn-block" id="ver_galeria_fotos" name="ver_galeria_fotos"><span class="glyphicon glyphicon-th-large"></span> Ver Galería</button> 
-                                </div>
-                                </div>
-                            </fieldset>
+                        <fieldset>
+                        <div class="form-group">
+                          <div class="col-md-12">
+                            <img src="" id="foto_ramo">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-12">
+                            <input id="foto_asignatura" name="foto_asignatura" type="file" class="form-control input-md" disabled accept="image/*"> 
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-12">  
+                            <button type='button' class="btn btn-primary btn-block" id="boton_modifica_foto" name="boton_modifica_foto"><span class="glyphicon glyphicon-picture"></span> Cambiar Imagen</button>
+                          </div>
+                        </div>
+                        </fieldset>
                         </form>
+                      </div>
+                      </div>
+                  
+                  </div>
+                  
+
+                  <div class="col-lg-7">
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-image"></i> Galería de Imagenes</h3>
+                      </div>
+                      <div class="panel-body" id="fotos_galeria" style="height:527px; overflow-y:scroll;">
+                      </div>
                     </div>
+                  </div>
+
                 </div>
 
             </div>
@@ -278,31 +317,12 @@
     <!-- /#wrapper -->
 
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="myModalLabel"></h3>
-          </div>
-          <div class="modal-body" id="cuerpoModal" style="text-align : justify;">
+          <div class="modal-body" style="text-align : justify;">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success" id="boton_aprobar_cierre"><span class="glyphicon glyphicon-ok"></span> Aprobar</button>
             <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="myModalLabel"></h3>
-          </div>
-          <div class="modal-body" id="cuerpoModal" style="text-align : justify;">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="boton_cierra_modal_galeria">Cerrar</button>
           </div>
         </div>
       </div>
